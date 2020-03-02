@@ -1,0 +1,176 @@
+
+:root {
+  --checkbox-width: 13px;
+}
+
+body {
+  /*background: #eee;*/
+  overflow-y: scroll;
+}
+body.dark {
+  color: white;
+}
+
+#controls {
+  --ctrl-font: normal .95em 'Segoe UI', sans-serif;
+  font: var(--ctrl-font);
+  font-family: sans-serif;
+  text-align: center;
+}
+fieldset {
+  font: var(--ctrl-font);
+  display: inline-block;
+  border: 0;
+}
+label, button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+select, input, button {
+  font: var(--ctrl-font);
+  padding: .1em .4em;
+  margin: 0;
+  box-sizing: content-box;
+}
+input[type='color'] {
+  width: 2em;
+  padding: 0;
+  margin-bottom: .3em;
+  vertical-align: middle;
+}
+input[type='checkbox'] {
+  position: relative;
+  top: 2px;
+}
+
+#content {
+  font: .9em 'Consolas', sans-serif;
+}
+#content section {
+  margin-bottom: 5em;
+}
+#content .section-header {
+  font-size: 2.8em;
+  font-weight: bold;
+  margin: 0.5em;
+}
+#content .section-flag {
+  margin-left: calc(-.2em - var(--checkbox-width));
+  padding: .2em;
+  opacity: 0;
+  transition: opacity .3s;
+}
+#content .section-header:hover .section-flag,
+#content section.checked .section-flag {
+  opacity: 1;
+}
+#content .section-header .checkbox {
+  top: -0.05em;
+  vertical-align: middle;
+}
+#content a {
+  text-decoration: none;
+  color: inherit;
+}
+#content a:hover {
+  /*color: #37c;*/
+  /*background: #cef;*/
+}
+#content .thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 1vw;
+  justify-content: space-around;
+}
+#content .thumb {
+  display: inline-table;
+  text-align: center;
+}
+#content .thumb figure {
+  margin: 0 0 5vh;
+}
+#content .thumb figcaption {
+  display: table;
+  margin: auto;
+  padding: 3px 12px 2px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+#content .thumb figcaption:hover {
+  /*background: #def;*/
+}
+#content .thumb.checked figcaption {
+  background: gold;
+}
+#content .thumb-flag {
+  margin-left: -13px;
+  padding: 0;
+  opacity: 0;
+  transition: .1s ease-in;
+}
+#content .thumb:hover .thumb-flag,
+#content .thumb.checked .thumb-flag {
+  margin-left: -6px;
+  padding: 6px;
+  opacity: 1;
+}
+#content .thumb-text em {
+  margin-right: .1em;
+  font-style: normal;
+}
+
+#viewer {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: white;
+  visibility: hidden;
+}
+@media (min-width: 1024px) {
+  #viewer .thumbs {
+    position: absolute;
+    left: 0;
+    top: 0 }
+}
+#viewer .thumbs a {
+  float: left;
+  padding: 5px;
+  border-top: 3px solid transparent;
+  opacity: .6;
+  transition: opacity .3s, border-color .3s;
+}
+#viewer .thumbs a:hover {
+  border-top-color: rgba(0,0,0,.1);
+  opacity: .9;
+  transition: none;
+}
+#viewer .thumbs a.selected {
+  border-top-color: rgba(0,0,0,.75);
+  opacity: 1;
+  cursor: default;
+}
+#viewer .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1% 1% 2% 2%;
+  cursor: pointer;
+}
+#viewer .close-btn {
+  position: relative;
+}
+#viewer .close-btn,
+#viewer .fotorama__arr {
+  transform: none;
+  opacity: 1;
+}
+#viewer .fotorama__arr--disabled {
+  opacity: .1;
+}
+#viewer .fotorama__arr--prev {
+  margin-left: 1%;
+}
+#viewer .fotorama__arr--next {
+  margin-right: 1%;
+}
