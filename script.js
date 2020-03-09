@@ -3,8 +3,8 @@
 
 const prefs = {
   title:   "Viewer",
-  jpgDir:  "./jpg",
-  pngDir:  "./png",
+  jpgDir:  "jpg",
+  pngDir:  "png",
 
   filter:  "",
   index:   0,
@@ -71,15 +71,12 @@ $(window).on('popstate', function(ev) {
 /***************************************************************************/
 function refresh(event) {
 
-  const sortNums = ([a], [b]) => 
-    Number( a.match(/\d+/)[0] ) - Number( b.match(/\d+/)[0] );
-
   const defaults = JSON.parse( JSON.stringify(prefs) );
   const params = unserialize(window.location.hash);
+  const sortNums = (a, b) => Number( a[0][0] ) - Number( b[0][0] );
 
   props = Object.assign(defaults, params);
-  dataMap = Object.entries(data)//.sort(sortNums);
-  // console.log(dataMap);
+  dataMap = Object.entries(data).sort(sortNums);
 
   refreshControls();
   refreshContent(event.type);
@@ -168,7 +165,7 @@ function createThumb(thumbData) {
   img.width = width;
   img.height = width / prefs.ratio;
   img.src = (props.bgColor != prefs.bgColor) ? pngPath : jpgPath;
-  img.onerror = (ev) => { ev.target.src = 'viewer/broken.svg' };
+  img.onerror = (ev) => { ev.target.src = 'broken.svg' };
 
   checkbox.className = checkbox.type = 'checkbox';
   checkbox.checked = isChecked;
